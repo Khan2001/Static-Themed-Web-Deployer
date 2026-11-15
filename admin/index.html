@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>专题页面管理</title><link rel="stylesheet" href="/manage/styles.css"></head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><small>TOPIC WEB</small><h1>专题页面管理</h1><p>独立静态页面发布工作台</p></div>
+      <button id="logout" class="secondary hidden">退出登录</button>
+    </header>
+    <section id="login" class="panel login-panel">
+      <div class="panel-kicker">SECURE ACCESS</div><h2>管理员登录</h2><p>登录后管理专题页面、版本和发布状态。</p>
+      <form id="loginForm"><label>账号<input id="username" autocomplete="username" required></label><label>密码<input id="password" type="password" autocomplete="current-password" required></label><button>登录管理后台</button></form><p id="loginMsg"></p>
+    </section>
+    <section id="app" class="hidden">
+      <div class="dashboard-grid">
+        <section class="panel action-panel upload-panel">
+          <div class="panel-heading"><div><span class="panel-icon">+</span><div><div class="panel-kicker">PUBLISH</div><h2>上传新专题</h2></div></div><span class="panel-number">01</span></div>
+          <p>上传包含 <code>index.html</code> 和资源文件的 ZIP 压缩包。</p>
+          <form id="uploadForm"><input id="existingId" type="hidden" value=""><label>专题名称<input id="uploadTitle" name="title" placeholder="例如：2026 春节专题" required></label><label>ZIP 文件<input id="archive" name="file" type="file" accept=".zip" required></label><button>上传并发布</button></form>
+          <div id="progress" class="progress hidden"><div id="progressBar"></div><span id="progressText">0%</span></div><p id="uploadMsg"></p>
+        </section>
+        <section class="panel action-panel account-panel">
+          <div class="panel-heading"><div><span class="panel-icon">●</span><div><div class="panel-kicker">ACCOUNT</div><h2>账户管理</h2></div></div><span class="panel-number">02</span></div>
+          <p>定期更新管理员密码，保护专题发布权限。</p>
+          <form id="passwordForm"><label>当前密码<input id="currentPassword" type="password" autocomplete="current-password" required></label><label>新密码<input id="newPassword" type="password" minlength="8" autocomplete="new-password" required></label><label>确认新密码<input id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required></label><button class="secondary-action">修改密码</button></form><p id="passwordMsg"></p>
+        </section>
+      </div>
+      <section class="panel topics-panel"><div class="topics-heading"><div><div class="panel-kicker">LIBRARY</div><h2>已上传页面</h2><p>查看专题状态、版本并执行发布操作。</p></div><button id="refresh" class="secondary">刷新列表</button></div><div id="topics"></div></section>
+    </section>
+  </main>
+  <script src="/manage/app.js"></script>
+</body>
+</html>

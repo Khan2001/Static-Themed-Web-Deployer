@@ -1,0 +1,22 @@
+services:
+  topic-api:
+    build: .
+    container_name: topicweb-api
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-change-me}
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-200}
+    volumes:
+      - ${TOPICWEB_DATA_ROOT:-./data}:/app/data
+  topic-nginx:
+    image: nginx:1.27-alpine
+    container_name: topicweb-nginx
+    restart: unless-stopped
+    ports:
+      - "${TOPICWEB_PORT:-8088}:80"
+    volumes:
+      - ${TOPICWEB_DATA_ROOT:-./data}/sites:/usr/share/nginx/html/topicweb:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on: [topic-api]

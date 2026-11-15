@@ -1,0 +1,21 @@
+# Runtime data
+data/sites/*
+data/tmp/*
+data/auth.json
+!data/sites/.gitkeep
+!data/tmp/.gitkeep
+
+# Environment
+*.env
+!.env.example
+
+# Offline deployment artifacts
+*.tar
+*.tar.gz
+topic-offline/
+
+# macOS
+.DS_Store
+
+# Docs belonging to the main website project
+网站用户使用说明.md
