@@ -112,6 +112,22 @@ data/
 - Docker Compose
 - 前端：原生 HTML / CSS / JS，无框架
 
+## 示例页面
+
+`example/` 目录存放已制作完成的静态专题页面源码，可直接打包为 ZIP 上传发布，也可作为制作新专题时的参考模板。
+
+```text
+example/
+└── jiaoyuzhengdun/    # 教育整顿专题
+    ├── index.html
+    └── index/
+        ├── css/style.css
+        ├── js/main.js
+        └── images/
+```
+
+使用方式：将示例文件夹压缩为 ZIP（确保 `index.html` 在根目录或唯一子文件夹内），通过管理面板上传即可。
+
 ## License
 
 Private
