@@ -1,0 +1,360 @@
+/* ==========================================================
+   红色党建风格静态页面样式
+   修改指引：颜色变量集中在 :root，替换图片路径见各背景图/图片标签
+   ========================================================== */
+:root {
+  --red-main: #b3222a;      /* 主红色 */
+  --red-dark: #8e1b22;      /* 深红色 */
+  --red-deeper: #6f1319;    /* 更深红，用于页脚 */
+  --gold: #d4a94e;          /* 金色点缀 */
+  --bg-light: #faf3ef;      /* 浅暖背景 */
+  --text-main: #333333;
+  --text-gray: #888888;
+  --border-light: #e8d8d2;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-main);
+  background: var(--bg-light);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--red-main); }
+ul { list-style: none; }
+
+.container {
+  width: 100%;
+  padding: 0 24px;
+}
+
+/* ---------- 1. 头图区（占版面约三分之二） ---------- */
+.hero {
+  position: relative;
+  height: 66vh;
+  min-height: 420px;
+  /* 替换说明：更换 index/images/banner.png 即可替换头图 */
+  background: url("../images/banner.png") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, rgba(143, 27, 34, 0), rgba(143, 27, 34, 0.35));
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 28px 60px;
+  background: rgba(179, 34, 42, 0.55);
+  border: 1px solid rgba(212, 169, 78, 0.7);
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
+}
+
+.hero-inner h1 {
+  font-size: 44px;
+  letter-spacing: 8px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.hero-inner p {
+  margin-top: 14px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: var(--gold);
+}
+
+/* ---------- 栏目标题通用样式（居中金钻 + 红金双线） ---------- */
+.section { padding: 40px 0 10px; }
+
+.section-title {
+  position: relative;
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+}
+
+/* 主线：红色渐隐粗线 */
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 6px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--red-main) 15%, var(--red-main) 85%, transparent);
+}
+
+/* 辅线：金色细线 */
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 1px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+}
+
+.section-title h2 {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 6px;
+  color: var(--red-main);
+  padding: 2px 52px;
+  background: var(--bg-light);
+}
+
+/* 标题两侧金色菱形装饰 */
+.section-title h2::before,
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 10px; height: 10px;
+  margin-top: -5px;
+  background: linear-gradient(135deg, var(--gold) 0%, #b8862f 100%);
+  transform: rotate(45deg);
+  box-shadow: 0 0 4px rgba(212, 169, 78, 0.6);
+}
+
+.section-title h2::before { left: 18px; }
+.section-title h2::after { right: 18px; }
+
+.section-title .more {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 13px;
+  color: var(--text-gray);
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 3px 16px;
+  transition: all 0.2s;
+}
+
+.section-title .more:hover {
+  color: #fff;
+  background: var(--red-main);
+  border-color: var(--red-main);
+}
+
+/* ---------- 2. 头条栏目 ---------- */
+.headline-box {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 26px 30px;
+  box-shadow: 0 2px 10px rgba(179, 34, 42, 0.06);
+}
+
+.headline-tag {
+  display: inline-block;
+  background: var(--red-main);
+  color: #fff;
+  font-size: 13px;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.headline-box a.title {
+  font-size: 22px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.headline-box p.desc {
+  margin-top: 12px;
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+/* ---------- 3. 教育动态（左轮播 + 右新闻列表） ---------- */
+.news-layout {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* 轮播 */
+.carousel {
+  position: relative;
+  flex: 0 0 calc(50% - 12px);
+  height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(179, 34, 42, 0.12);
+  background: #000;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+.carousel-slide .slide-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 18px;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 64px;
+  border: none;
+  background: rgba(179, 34, 42, 0.5);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+}
+
+.carousel-btn:hover { background: rgba(179, 34, 42, 0.85); }
+.carousel-btn.prev { left: 0; border-radius: 0 4px 4px 0; }
+.carousel-btn.next { right: 0; border-radius: 4px 0 0 4px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 14px; right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.carousel-dots span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+
+.carousel-dots span.active { background: var(--gold); }
+
+/* 新闻列表 */
+.news-list {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 18px 22px;
+}
+
+.news-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--border-light);
+  font-size: 15px;
+}
+
+.news-list li:last-child { border-bottom: none; }
+
+.news-list li::before {
+  content: "▪";
+  color: var(--red-main);
+  flex: none;
+}
+
+.news-list li a { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.news-list li .date { flex: none; color: var(--text-gray); font-size: 13px; }
+
+/* ---------- 4/5. 辅导专区、学习资料列表 ---------- */
+.article-list {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 10px 22px;
+}
+
+.article-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border-light);
+  font-size: 15px;
+}
+
+.article-list li:last-child { border-bottom: none; }
+
+.article-list li::before {
+  content: "•";
+  color: var(--red-main);
+  font-weight: bold;
+  flex: none;
+}
+
+.article-list li a { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.article-list li .date { flex: none; color: var(--text-gray); font-size: 13px; }
+
+/* ---------- 6. 底部信息栏 ---------- */
+.footer {
+  margin-top: 50px;
+  background: var(--red-deeper);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 34px 0 22px;
+  font-size: 14px;
+}
+
+.footer .footer-links {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.footer .footer-links a { margin: 0 18px; }
+.footer .footer-links a:hover { color: var(--gold); }
+
+.footer .footer-info {
+  text-align: center;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer .copyright {
+  text-align: center;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 900px) {
+  .hero-inner h1 { font-size: 30px; letter-spacing: 4px; }
+  .news-layout { flex-direction: column; }
+  .carousel { flex: none; height: 260px; }
+}
